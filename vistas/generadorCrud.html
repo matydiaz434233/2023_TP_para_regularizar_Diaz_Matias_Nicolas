@@ -25,7 +25,7 @@
                     <input type="text" class="form-control" placeholder="Nombre del atributo">
                 </div>
                 <div class="col">
-                    <select class="form-select" >
+                    <select class="form-select">
                         <option value="" disabled selected>Elija un tipo</option>
                         <option value="integer">Entero</option>
                         <option value="varchar(50)">Varchar (50)</option>
@@ -38,8 +38,44 @@
 
         <button id="agregar-atributo" class="btn btn-primary">OTRO</button>
         <br>
-        <button id="generarCrud" class="btn btn-primary">GENERAR CRUD</button>
 
+        <div class="container">
+            <h2>Permisos Para el Recurso:</h2>
+            <button id="otroPermiso" class="btn btn-primary">Otro Permiso</button>
+            <div id="permisos">
+                <label for="persona">Elija qué persona da permiso:</label>
+                <select id="persona">
+                    <option value="persona1">Persona 1</option>
+                    <option value="persona2">Persona 2</option>
+                    <option value="persona3">Persona 3</option>
+                </select>
+                <br>
+                <label class="checkbox-inline">
+                    <input type="checkbox" value="alta"> Alta
+                </label>
+                <label class="checkbox-inline">
+                    <input type="checkbox" value="baja"> Baja
+                </label>
+                <label class="checkbox-inline">
+                    <input type="checkbox" value="modificacion"> Modificación
+                </label>
+                <label class="checkbox-inline">
+                    <input type="checkbox" value="consulta"> Consulta
+                </label>
+                <br>
+            </div>
+        </div>
+
+        <br>
+
+        <button id="generarCrud" class="btn btn-primary">GENERAR CRUD</button>
+        <br><br>
+        <button class="btn btn-primary" onclick="redirectToLogin()">Iniciar sesión</button>
+        <script>
+            function redirectToLogin() {
+              window.location.href = "/login/login.html";
+            }
+          </script>
     </div>
 
 

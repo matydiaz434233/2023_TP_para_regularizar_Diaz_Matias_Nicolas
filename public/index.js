@@ -44,3 +44,26 @@ agregarAtributoBtn.addEventListener("click", function () {
 
   atributosContainer.appendChild(row);
 });
+
+
+
+
+
+document.getElementById('otroPermiso').addEventListener('click', function() {
+  var permisosDiv = document.getElementById('permisos');
+
+  // Clonar el elemento select y labels
+  var nuevoPermiso = permisosDiv.cloneNode(true);
+
+  // Restablecer los valores seleccionados y las casillas de verificación
+  var select = nuevoPermiso.querySelector('select');
+  select.selectedIndex = 0;
+  var checkboxes = nuevoPermiso.querySelectorAll('input[type="checkbox"]');
+  for (var i = 0; i < checkboxes.length; i++) {
+    checkboxes[i].checked = false;
+  }
+
+  // Agregar el nuevo permiso al final
+  permisosDiv.parentNode.appendChild(nuevoPermiso);
+});
+
