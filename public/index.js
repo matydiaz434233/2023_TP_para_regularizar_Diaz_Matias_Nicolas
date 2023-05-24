@@ -17,6 +17,7 @@ agregarAtributoBtn.addEventListener("click", function () {
   var tipoAtributoSelect = document.createElement("select");
   tipoAtributoSelect.className = "form-select";
   var opciones = [
+    { valor: "", texto: "Elija un tipo", disabled: true },
     { valor: "integer", texto: "Entero" },
     { valor: "varchar(50)", texto: "Varchar (50)" },
     { valor: "bool", texto: "Bool" },
