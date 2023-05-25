@@ -11,12 +11,12 @@ myapp.get("/", (req, res) => {
 });
 myapp.use(express.static(path.join(__dirname, "login")));
 
-myapp.get("/login/login.html", (req, res) => {
-  res.sendFile(__dirname + "/login/login.html");
+myapp.get("/vistas/login.html", (req, res) => {
+  res.sendFile(__dirname + "/vistas/login.html");
 });
 
-myapp.get("/login/registro.html", (req, res) => {
-  res.sendFile(__dirname + "/login/registro.html");
+myapp.get("/vistas/registro.html", (req, res) => {
+  res.sendFile(__dirname + "/vistas/registro.html");
 });
 
 myapp.post("/login/registro.html", (req, res) => {
