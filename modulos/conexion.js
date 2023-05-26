@@ -1,22 +1,16 @@
 const Sequelize = require('sequelize');
 
-// Crea una instancia de Sequelize con los parámetros de conexión
-const sequelize = new Sequelize('generadorCrud', 'usuario', 'contraseña', {
-  host: 'localhost', 
-  dialect: 'mysql', 
+
+//Sequelize('mysql://user:password@localhost:2023/generadorcrud');
+const sequelize = new Sequelize('generadorcrud', 'root', '', {
+  host: 'localhost',
+  dialect: 'mysql',
+  logging: false
 });
 
-// Prueba la conexión
-sequelize
-  .authenticate()
-  .then(() => {
-    console.log('Conexión exitosa a la base de datos');
-  })
-  .catch((error) => {
-    console.error('Error al conectar a la base de datos:', error);
-  });
-
-// Definición de modelos y consultas aquí proximamente
-
-// Exporta la instancia de Sequelize para usarla en otros archivos
-module.exports = sequelize;
+// sequelize.authenticate().then(() => {
+//   console.log('conexion exitosa');
+// }) .catch(err => {
+//   console.log('error en la conexion', err);
+// })
+module.exports = sequelize 
