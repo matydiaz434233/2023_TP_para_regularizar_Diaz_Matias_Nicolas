@@ -67,3 +67,46 @@ document.getElementById('otroPermiso').addEventListener('click', function() {
   permisosDiv.parentNode.appendChild(nuevoPermiso);
 });
 
+
+
+// *********************Tomo Informacion ****************
+
+//-----------------------------------------Crear Json---------------------------<<
+  // Obtener los datos del formulario
+  const formData = new FormData(tablaForm);
+  const requestBody = {
+    tableName: formData.get("tableName"),
+    attributes: [],
+  };
+
+  // Recorrer los atributos del formulario y agregarlos al requestBody
+  const attributeNames = formData.getAll("attributeName");
+  const attributeTypes = formData.getAll("attributeType");
+  for (const [index, attributeName] of attributeNames.entries()) {
+    const attributeType = attributeTypes[index];
+
+    requestBody.attributes.push({
+      name: attributeName,
+      type: attributeType,
+    });
+  }
+
+  //-------------------------------Enviar al BackEnd----------------------------------------<<
+  // Enviar la solicitud al backend
+  fetch("/generarCRUD", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(requestBody),
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      // Manejar la respuesta del backend
+      console.log(data);
+    })
+    .catch((error) => {
+      // Manejar el error
+      console.error('error al enviar la solicitud', error);
+    });
+;

@@ -1,32 +1,24 @@
-const express = require("express");
-const path = require("path");
+import express from "express";
+import path from "path";
 const myapp = express();
-const sequelize = require("./modulos/conexion");  // Importa el modulo de conexion
+//import sequelize from "./modulos/conexion";
+import rutas from "./modulos/rutas.js";
+import { fileURLToPath } from "url";
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+myapp.use(rutas);
+myapp.use(express.static(path.join(__dirname,"modulos")));
 
 myapp.listen(2023, () => {
   console.log("Servidor corriendo en el puerto 2023");
 });
-myapp.use(express.static(path.join(__dirname, "public")));
-myapp.get("/", (req, res) => {
-  res.sendFile(__dirname + "/vistas/generadorCrud.html");
-});
-myapp.use(express.static(path.join(__dirname, "login")));
-
-myapp.get("/vistas/login.html", (req, res) => {
-  res.sendFile(__dirname + "/vistas/login.html");
-});
-
-myapp.get("/vistas/registro.html", (req, res) => {
-  res.sendFile(__dirname + "/vistas/registro.html");
-});
-
-myapp.post("/login/registro.html", (req, res) => {
-  res.redirect("/vistas/generadorCrud.html");
-});
-
 //conecto mi base de datos
-sequelize.authenticate().then(() => {
-  console.log('conexion exitosa');
-}) .catch(err => {
-  console.log('error en la conexion', err);
-})
+// sequelize
+//   .authenticate()
+//   .then(() => {
+//     console.log("conexion exitosa");
+//   })
+//   .catch((err) => {
+//     console.log("error en la conexion", err);
+//   });

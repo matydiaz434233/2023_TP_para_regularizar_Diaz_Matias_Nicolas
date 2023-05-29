@@ -1,4 +1,4 @@
-const Sequelize = require('sequelize');
+import Sequelize from 'sequelize';
 
 
 //Sequelize('mysql://user:password@localhost:2023/generadorcrud');
