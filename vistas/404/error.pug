@@ -1,0 +1,17 @@
+doctype html
+head
+  meta(charset='UTF-8')
+  meta(name='viewport' content='width=device-width, initial-scale=1.0')
+  title Error 404
+  link(rel='stylesheet' href='404.css')
+.container.error-page
+  img(src='404.png' alt='Error 404')
+  h1 Error 404 - P&aacute;gina no encontrada
+  a.button(href='/') Volver a la normalidad
+script.
+  document.addEventListener('DOMContentLoaded', function() {
+  var errorPage = document.querySelector('.error-page');
+  setTimeout(function() {
+  errorPage.style.display = 'block';
+  }, 100);
+  });

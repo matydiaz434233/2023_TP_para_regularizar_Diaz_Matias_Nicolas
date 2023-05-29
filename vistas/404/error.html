@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Error 404</title>
+    <link rel="stylesheet" href="404.css">
+</head>
+
+<body>
+    <div class="container error-page"><img src="404.png" alt="Error 404">
+        <h1>Error 404 - Página no encontrada</h1><a class="button" href="/">Volver a la normalidad</a>
+    </div>
+</body>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        var errorPage = document.querySelector('.error-page');
+        setTimeout(function() {
+            errorPage.style.display = 'block';
+        }, 100);
+    });
+</script>
+
+</html>

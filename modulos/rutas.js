@@ -1,6 +1,8 @@
 import express from "express";
 import path from "path";
 import { fileURLToPath } from "url";
+import handler from './handlerRequest.js';
+
 const rutas = express.Router();
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -21,6 +23,11 @@ rutas.get("/vistas/registro.html", (req, res) => {
 
 rutas.post("/login/registro.html", (req, res) => {
   res.redirect("../vistas/generadorCrud.html");
+});
+
+// Ruta para manejar errores 404
+rutas.use((req, res) => {
+  handler.error404(req, res);
 });
 
 export default rutas;
