@@ -9,6 +9,9 @@ const __dirname = path.dirname(__filename);
 
 myapp.use(rutas);
 myapp.use(express.static(path.join(__dirname,"modulos")));
+myapp.use(express.static(path.join(__dirname, "vistas")));
+myapp.use(express.static(path.join(__dirname, "vistas/404")));
+
 
 myapp.listen(2023, () => {
   console.log("Servidor corriendo en el puerto 2023");
