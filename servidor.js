@@ -21,7 +21,7 @@ conexion
   .catch((err) => {
     console.log("error en la conexion", err);
   });
-
+//arranco mi servidor
 myapp.listen(2023, () => {
   console.log("Servidor corriendo en el puerto 2023");
 });

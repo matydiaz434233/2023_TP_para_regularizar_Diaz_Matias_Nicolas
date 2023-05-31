@@ -15,7 +15,7 @@ export default sequelize;
 //    user: 'root',
 //    password: '',
 //   database: 'generadorcrud',
-//   port: 2023
+//   port: 3306
 //  })
 
 

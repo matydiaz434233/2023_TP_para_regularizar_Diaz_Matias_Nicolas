@@ -13,14 +13,16 @@ agregarAtributoBtn.addEventListener("click", function () {
   nombreAtributoInput.type = "text";
   nombreAtributoInput.className = "form-control";
   nombreAtributoInput.placeholder = "Nombre del atributo";
+  nombreAtributoInput.name = "attributeName";
 
   var tipoAtributoSelect = document.createElement("select");
   tipoAtributoSelect.className = "form-select";
+  tipoAtributoSelect.name = "attributeType";
   var opciones = [
     { valor: "", texto: "Elija un tipo", disabled: true },
-    { valor: "integer", texto: "Entero" },
+    { valor: "int", texto: "Entero" },
     { valor: "varchar(50)", texto: "Varchar (50)" },
-    { valor: "bool", texto: "Bool" },
+    { valor: "tinyint(1)", texto: "Bool" },
     { valor: "enum", texto: "Enum" },
   ];
   opciones.forEach(function (opcion) {
@@ -41,6 +43,16 @@ agregarAtributoBtn.addEventListener("click", function () {
 
   row.appendChild(col1);
   row.appendChild(col2);
+  // BOTTON ELIMINAR ATRIBUTO SI SE DESEA
+  var eliminarAtributoBtn = document.createElement("button");
+  eliminarAtributoBtn.className = "btn btn-danger btn-sm";
+  eliminarAtributoBtn.innerHTML = "Eliminar";
+  eliminarAtributoBtn.addEventListener("click", function () {
+    // Eliminar el conjunto de campos de atributo
+    atributosContainer.removeChild(row);
+  });
+
+  col1.appendChild(eliminarAtributoBtn);
 
   atributosContainer.appendChild(row);
 });
@@ -59,75 +71,25 @@ document.getElementById("otroPermiso").addEventListener("click", function () {
     checkboxes[i].checked = false;
   }
 
+  // Crear un contenedor para el permiso y el botón "Eliminar"
+  var permisoRow = document.createElement("div");
+  permisoRow.className = "permiso-row";
+  permisoRow.appendChild(nuevoPermiso);
+
+  // BOTÓN ELIMINAR PERMISO SI SE DESEA
+  var eliminarPermisoBtn = document.createElement("button");
+  eliminarPermisoBtn.className = "btn btn-danger btn-sm eliminar-permiso";
+  eliminarPermisoBtn.innerHTML = "Eliminar";
+  eliminarPermisoBtn.addEventListener("click", function () {
+    // Eliminar el conjunto de campos de permiso
+    permisoRow.parentNode.removeChild(permisoRow);
+  });
+
+  permisoRow.appendChild(eliminarPermisoBtn);
+
   // Agregar el nuevo permiso al final
-  permisosDiv.parentNode.appendChild(nuevoPermiso);
+  permisosDiv.parentNode.appendChild(permisoRow);
 });
 
-function redirectToLogin() {
-  window.location.href = "../vistas/login.html";
-}
 
-// recupero datos del formulario en 30 segundos
-document
-  .querySelector("tablaForm")
-  .addEventListener("generarCrud", function (e) {
-    e.preventDefault();
-    const datos = Object.fromEntries(new FormData(e.target));
-    alert(JSON.stringify(datos));
-  });
-
-// *********************Tomo Informacion ****************
-const nombreRecurso = document.getElementById("recurso").value;
-const tablaForm = document.getElementById("tablaForm");
-//-----------------------------------------Crear Json---------------------------<<
-// Obtener los datos del formulario
-const formData = new FormData(tablaForm);
-const requestBody = {
-  tableName: formData.get(nombreRecurso),
-  attributes: [],
-};
-
-// Recorrer los atributos del formulario y agregarlos al requestBody
-const attributeNames = formData.getAll("attributeName");
-const attributeTypes = formData.getAll("attributeType");
-for (const [index, attributeName] of attributeNames.entries()) {
-  const attributeType = attributeTypes[index];
-
-  requestBody.attributes.push({
-    name: attributeName,
-    type: attributeType,
-  });
-}
-
-//-------------------------------Enviar al BackEnd----------------------------------------<<
-// Enviar la solicitud al backend
-fetch("/generadorCrud", {
-  method: "POST",
-  headers: {
-    "Content-Type": "application/json",
-  },
-  body: JSON.stringify(requestBody),
-})
-  .then((response) => response.json())
-  .then((data) => {
-    // Manejar la respuesta del backend
-    console.log(data);
-  })
-  .catch((error) => {
-    // Manejar el error
-    console.error("error al enviar la solicitud", error);
-  });
-
-// //   HAGO MANEJO DE LA SOLICITUD
-// import { poolconnection, connection, sequelize } from "./modulos/conexion.js";
-// //coneccion de prueba
-// connection.connect((err) => {
-//   if (err) {
-//     console.log("error en la conexion", err);
-//   } else {
-//     console.log("conexion exitosa a la base de datos de generadorCrud");
-//     var sql =
-//       " CREATE TABLE persona (id INT PRIMARY KEY AUTO_INCREMENT,nombre VARCHAR(50) NOT NULL, apellido VARCHAR(50) NOT NULL,edad INT NOT NULL)"; ;
-//     console.log(sql);
-//   }
-// });
+//   TOMAR DATOS DEL
