@@ -1,16 +1,46 @@
+// CONEXION POR SEQUELIZE
 import Sequelize from 'sequelize';
 
-
-//Sequelize('mysql://user:password@localhost:2023/generadorcrud');
 const sequelize = new Sequelize('generadorcrud', 'root', '', {
   host: 'localhost',
   dialect: 'mysql',
   logging: false
 });
+export default sequelize;
+// CONEXION POR SQL
+// import mysql from 'mysql2';
+// import { query } from 'express';
+//  var connection = mysql.createConnection({
+//    host: 'localhost',
+//    user: 'root',
+//    password: '',
+//   database: 'generadorcrud',
+//   port: 2023
+//  })
 
-// sequelize.authenticate().then(() => {
-//   console.log('conexion exitosa');
-// }) .catch(err => {
-//   console.log('error en la conexion', err);
+
+
+// connection.connect((err) => {
+//   if (err) {
+//     console.log('error en la conexion', err);
+//   } else {
+//     console.log('conexion exitosa a la base de datos de generadorCrud');
+//   }
 // })
-module.exports = sequelize 
+
+// //connection.end();    //  cierro la conexion
+
+
+// // pool de conexiones
+
+// var poolconnection = mysql.createPool({
+//   host: 'localhost',
+//   user: 'root',
+//   password: '',
+//  database: 'generadorcrud',
+// })
+// poolconnection.query(query,params,  (err, result , fiels) => {
+//   //hago cosas con la base de datos
+// })
+
+// //export { poolconnection, connection, sequelize };

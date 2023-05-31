@@ -1,27 +1,27 @@
 import express from "express";
 import path from "path";
-const myapp = express();
-//import sequelize from "./modulos/conexion";
+import conexion from "./modulos/conexion.js";
 import rutas from "./modulos/rutas.js";
 import { fileURLToPath } from "url";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
-
-myapp.use(rutas);
-myapp.use(express.static(path.join(__dirname,"modulos")));
+const myapp = express();
+myapp.use(express.static(path.join(__dirname, "modulos")));
+myapp.use(express.static(path.join(__dirname, "login")));
 myapp.use(express.static(path.join(__dirname, "vistas")));
-myapp.use(express.static(path.join(__dirname, "vistas/404")));
+myapp.set("view engine", "pug");
+myapp.use(rutas);
 
+//conecto mi base de datos
+conexion
+  .authenticate()
+  .then(() => {
+    console.log("conexion exitosa a la base de datos de generadorCrud");
+  })
+  .catch((err) => {
+    console.log("error en la conexion", err);
+  });
 
 myapp.listen(2023, () => {
   console.log("Servidor corriendo en el puerto 2023");
 });
-//conecto mi base de datos
-// sequelize
-//   .authenticate()
-//   .then(() => {
-//     console.log("conexion exitosa");
-//   })
-//   .catch((err) => {
-//     console.log("error en la conexion", err);
-//   });

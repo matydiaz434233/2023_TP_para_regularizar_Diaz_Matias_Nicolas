@@ -4,84 +4,81 @@
 <head>
     <title>Generador de CRUD por Matias Diaz</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.11.2/dist/css/bootstrap.min.css">
+    
+
 </head>
 
 <body>
-    <div class="container">
-        <h1 class="mt-5">Generador de CRUD por Matias Diaz</h1>
+    <form id="tablaForm">
+        <div class="container">
+            <h1 class="mt-5">Generador de CRUD por Matias Diaz</h1>
 
-        <div class="mt-5">
-            <label for="recurso" class="form-label">Nombre del recurso:</label>
-            <input type="text" id="recurso" class="form-control" placeholder="Ingrese el nombre del recurso">
-        </div>
-    </div>
-
-    <div class="container">
-        <h1 class="mt-5">Generador de atributos</h1>
-
-        <div id="atributos-container" class="mt-5">
-            <div class="row mb-3">
-                <div class="col">
-                    <input type="text" class="form-control" placeholder="Nombre del atributo">
-                </div>
-                <div class="col">
-                    <select class="form-select">
-                        <option value="" disabled selected>Elija un tipo</option>
-                        <option value="integer">Entero</option>
-                        <option value="varchar(50)">Varchar (50)</option>
-                        <option value="bool">Bool</option>
-                        <option value="enum">Enum</option>
-                    </select>
-                </div>
+            <div class="mt-5">
+                <label for="recurso" class="form-label">Nombre del recurso:</label>
+                <input type="text" id="recurso" class="form-control" placeholder="Ingrese el nombre del recurso">
             </div>
         </div>
-
-        <button id="agregar-atributo" class="btn btn-primary">OTRO</button>
-        <br>
 
         <div class="container">
-            <h2>Permisos Para el Recurso:</h2>
-            <button id="otroPermiso" class="btn btn-primary">Otro Permiso</button>
-            <div id="permisos">
-                <label for="persona">Elija qué persona da permiso:</label>
-                <select id="persona">
-                    <option value="persona1">Persona 1</option>
-                    <option value="persona2">Persona 2</option>
-                    <option value="persona3">Persona 3</option>
-                </select>
-                <br>
-                <label class="checkbox-inline">
-                    <input type="checkbox" value="alta"> Alta
-                </label>
-                <label class="checkbox-inline">
-                    <input type="checkbox" value="baja"> Baja
-                </label>
-                <label class="checkbox-inline">
-                    <input type="checkbox" value="modificacion"> Modificación
-                </label>
-                <label class="checkbox-inline">
-                    <input type="checkbox" value="consulta"> Consulta
-                </label>
-                <br>
+            <h1 class="mt-5">Generador de atributos</h1>
+
+            <div id="atributos-container" class="mt-5">
+                <div class="row mb-3">
+                    <div class="col">
+                        <input id="attributeName" type="text" class="form-control" placeholder="Nombre del atributo">
+                    </div>
+                    <div class="col">
+                        <select id="attributeType" class="form-select">
+                            <option value="" disabled selected>Elija un tipo</option>
+                            <option value="integer">Entero</option>
+                            <option value="varchar(50)">Varchar (50)</option>
+                            <option value="bool">Bool</option>
+                            <option value="enum">Enum</option>
+                        </select>
+                    </div>
+                </div>
             </div>
+
+            <button id="agregar-atributo" class="btn btn-primary">OTRO</button>
+            <br>
+
+            <div class="container">
+                <h2>Permisos Para el Recurso:</h2>
+                <button id="otroPermiso" class="btn btn-primary">Otro Permiso</button>
+                <div id="permisos">
+                    <label for="persona">Elija qué persona da permiso:</label>
+                    <select id="persona">
+                        <option value="persona1">Persona 1</option>
+                        <option value="persona2">Persona 2</option>
+                        <option value="persona3">Persona 3</option>
+                    </select>
+                    <br>
+                    <label class="checkbox-inline">
+                        <input type="checkbox" value="alta"> Alta
+                    </label>
+                    <label class="checkbox-inline">
+                        <input type="checkbox" value="baja"> Baja
+                    </label>
+                    <label class="checkbox-inline">
+                        <input type="checkbox" value="modificacion"> Modificación
+                    </label>
+                    <label class="checkbox-inline">
+                        <input type="checkbox" value="consulta"> Consulta
+                    </label>
+                     <br>
+                </div> 
+            </div>
+
+            <br>
+
+            <button id="generarCrud" type="submit" class="btn btn-primary">GENERAR CRUD</button>
+            <br><br>
+            <button class="btn btn-primary" onclick="redirectToLogin()">Iniciar sesión</button>
+
         </div>
+    </form>
+    <script type="module" src="index.js"></script>
 
-        <br>
-
-        <button id="generarCrud" class="btn btn-primary">GENERAR CRUD</button>
-        <br><br>
-        <button class="btn btn-primary" onclick="redirectToLogin()">Iniciar sesión</button>
-        <script>
-            function redirectToLogin() {
-              window.location.href = "/vistas/login.html";
-            }
-          </script>
-    </div>
-
-
-
-
-    <script src="/modulos/index.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.11.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 
