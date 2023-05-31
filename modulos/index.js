@@ -92,4 +92,47 @@ document.getElementById("otroPermiso").addEventListener("click", function () {
 });
 
 
-//   TOMAR DATOS DEL
+// TOMAR DATOS DEL formulario
+
+const formulario = document.getElementById("formulario");
+const boton = document.getElementById("generarCrud");
+formulario.addEventListener("submit", function (e) {
+  e.preventDefault();
+
+  const datosFormulario = new FormData(formulario);
+  const requestBody = {
+    tableName: datosFormulario.get("nombreTabla"),
+    attributes: [],
+  };
+
+  const attributeNames = datosFormulario.getAll("attributeName");
+  const attributeTypes = datosFormulario.getAll("attributeType");
+  for (const [index, attributeName] of attributeNames.entries()) {
+    const attributeType = attributeTypes[index];
+
+    requestBody.attributes.push({
+      name: attributeName,
+      type: attributeType,
+    });
+  }
+console.log(requestBody);
+  // ENVIO DATOS AL BACKEND
+
+  fetch("/generadorCrud", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(requestBody),
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      // Manejar la respuesta del backend
+      console.log(data);
+    })
+    .catch((error) => {
+      // Manejar el error
+      console.error('error al enviar la solicitud', error);
+    });
+});
+

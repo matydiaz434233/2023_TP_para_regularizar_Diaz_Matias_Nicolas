@@ -9,13 +9,13 @@
 </head>
 
 <body>
-    <form id="tablaForm">
+    <form action="/generadorCrud" method="post" id="formulario">
         <div class="container">
             <h1 class="mt-5">Generador de CRUD por Matias Diaz</h1>
 
             <div class="mt-5">
                 <label for="recurso" class="form-label">Nombre del recurso:</label>
-                <input type="text" id="recurso" class="form-control" placeholder="Ingrese el nombre del recurso">
+                <input name="nombreTabla" type="text" id="recurso" class="form-control" placeholder="Ingrese el nombre del recurso">
             </div>
         </div>
 
@@ -73,10 +73,11 @@
 
             <button id="generarCrud" type="submit" class="btn btn-primary">GENERAR CRUD</button>
             <br><br>
-            <button class="btn btn-primary" onclick="redirigirAlLogin()">Iniciar sesión</button>
 
         </div>
     </form>
+    <button class="btn btn-primary" onclick="redirigirAlLogin()">Iniciar sesión</button>
+
     <script> function redirigirAlLogin() {
             window.location.href = "/vistas/login.html";
         }</script>
