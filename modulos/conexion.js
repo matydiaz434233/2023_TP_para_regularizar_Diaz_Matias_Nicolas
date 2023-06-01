@@ -1,46 +1,42 @@
 // CONEXION POR SEQUELIZE
-import Sequelize from 'sequelize';
+import Sequelize from "sequelize";
 
-const sequelize = new Sequelize('generadorcrud', 'root', '', {
-  host: 'localhost',
-  dialect: 'mysql',
-  logging: false
+const sequelize = new Sequelize("generadorcrud", "root", "", {
+  host: "localhost",
+  dialect: "mysql",
+  logging: false,
 });
-export default sequelize;
-// CONEXION POR SQL
-// import mysql from 'mysql2';
-// import { query } from 'express';
-//  var connection = mysql.createConnection({
-//    host: 'localhost',
-//    user: 'root',
-//    password: '',
-//   database: 'generadorcrud',
-//   port: 3306
-//  })
 
+async function testDeConexion() {
+  try {
+    await sequelize.authenticate();
+    console.log("Conexion exitosa a la base de datos");
+  } catch (error) {
+    console.log(error);
+  }
+}
 
+const crearTabla = async (nombreTabla, atributos) => {
+  console.log(nombreTabla, atributos);
+  const columnas = {};
+  for (let atributo of atributos) {
+    columnas: [atributo.name] = {
+      type: [atributo.type],
+      allowNull: false,
+    };
+  }
+  console.log(columnas);
 
-// connection.connect((err) => {
-//   if (err) {
-//     console.log('error en la conexion', err);
-//   } else {
-//     console.log('conexion exitosa a la base de datos de generadorCrud');
-//   }
-// })
+  const TablaCompleta = sequelize.define(nombreTabla, columnas, {
+    timestamps: false,
+  });
 
-// //connection.end();    //  cierro la conexion
+  try {
+    await TablaCompleta.sync();
+    console.log("Tabla creada");
+  } catch (error) {
+    console.log(error);
+  }
+};
 
-
-// // pool de conexiones
-
-// var poolconnection = mysql.createPool({
-//   host: 'localhost',
-//   user: 'root',
-//   password: '',
-//  database: 'generadorcrud',
-// })
-// poolconnection.query(query,params,  (err, result , fiels) => {
-//   //hago cosas con la base de datos
-// })
-
-// //export { poolconnection, connection, sequelize };
+export { crearTabla, sequelize, testDeConexion };

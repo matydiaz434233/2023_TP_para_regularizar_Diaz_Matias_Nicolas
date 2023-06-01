@@ -1,6 +1,8 @@
 import express from "express";
 import path from "path";
-import conexion from "./modulos/conexion.js";
+//import sequelize from "sequelize";
+
+//import conexion from "./modulos/conexion.js";
 import rutas from "./modulos/rutas.js";
 import { fileURLToPath } from "url";
 const __filename = fileURLToPath(import.meta.url);
@@ -13,14 +15,17 @@ myapp.set("view engine", "pug");
 myapp.use(rutas);
 
 //conecto mi base de datos
-conexion
-  .authenticate()
-  .then(() => {
-    console.log("conexion exitosa a la base de datos de generadorCrud");
-  })
-  .catch((err) => {
-    console.log("error en la conexion", err);
-  });
+// const connectToDatabase = async () => {
+//   try {
+//     await sequelize.authenticate();
+//     console.log('Conexión exitosa a la base de datos de generadorcrud');
+//   } catch (error) {
+//     console.log('Error en la conexión:', error);
+//   }
+// };
+
+// // Llamar a la función para conectar a la base de datos
+// connectToDatabase();
 //arranco mi servidor
 myapp.listen(2023, () => {
   console.log("Servidor corriendo en el puerto 2023");

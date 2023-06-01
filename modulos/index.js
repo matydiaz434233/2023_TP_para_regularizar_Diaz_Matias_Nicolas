@@ -91,11 +91,11 @@ document.getElementById("otroPermiso").addEventListener("click", function () {
   permisosDiv.parentNode.appendChild(permisoRow);
 });
 
-
 // TOMAR DATOS DEL formulario
 
 const formulario = document.getElementById("formulario");
 const boton = document.getElementById("generarCrud");
+
 formulario.addEventListener("submit", function (e) {
   e.preventDefault();
 
@@ -115,7 +115,7 @@ formulario.addEventListener("submit", function (e) {
       type: attributeType,
     });
   }
-console.log(requestBody);
+  console.log(requestBody);
   // ENVIO DATOS AL BACKEND
 
   fetch("/generadorCrud", {
@@ -129,10 +129,10 @@ console.log(requestBody);
     .then((data) => {
       // Manejar la respuesta del backend
       console.log(data);
+      console.log(requestBody);
     })
     .catch((error) => {
       // Manejar el error
-      console.error('error al enviar la solicitud', error);
+      console.error("error al enviar la solicitud", error);
     });
 });
-
