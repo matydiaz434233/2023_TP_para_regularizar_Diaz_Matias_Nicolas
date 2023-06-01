@@ -11,6 +11,8 @@ const myapp = express();
 myapp.use(express.static(path.join(__dirname, "modulos")));
 myapp.use(express.static(path.join(__dirname, "login")));
 myapp.use(express.static(path.join(__dirname, "vistas")));
+myapp.use(express.static(path.join(__dirname, "public")));
+
 myapp.set("view engine", "pug");
 myapp.use(rutas);
 

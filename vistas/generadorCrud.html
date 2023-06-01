@@ -3,9 +3,8 @@
 
 <head>
     <title>Generador de CRUD por Matias Diaz</title>
+    <link rel="stylesheet" href="generadorCrud.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.11.2/dist/css/bootstrap.min.css">
-
-
 </head>
 
 <body>
@@ -15,7 +14,8 @@
 
             <div class="mt-5">
                 <label for="recurso" class="form-label">Nombre del recurso:</label>
-                <input name="nombreTabla" type="text" id="recurso" class="form-control" placeholder="Ingrese el nombre del recurso">
+                <input name="nombreTabla" type="text" id="recurso" class="form-control"
+                    placeholder="Ingrese el nombre del recurso">
             </div>
         </div>
 
@@ -71,18 +71,18 @@
 
             <br>
 
-            <button id="generarCrud" type="submit" class="btn btn-primary">GENERAR CRUD</button>
+            <button id="generarCrud" type="submit" class="btn-generar-crud">GENERAR CRUD</button>
             <br><br>
 
         </div>
     </form>
     <button class="btn btn-primary" onclick="redirigirAlLogin()">Iniciar sesión</button>
-
-    <script> function redirigirAlLogin() {
+    <script>
+        function redirigirAlLogin() {
             window.location.href = "/vistas/login.html";
-        }</script>
+        }
+    </script>
     <script type="module" src="index.js"></script>
-
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.11.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 

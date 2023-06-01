@@ -3,6 +3,9 @@ console.log("scrip cargado");
 var atributosContainer = document.getElementById("atributos-container");
 var agregarAtributoBtn = document.getElementById("agregar-atributo");
 
+
+
+
 // Manejador de eventos para agregar otro conjunto de campos
 agregarAtributoBtn.addEventListener("click", function () {
   // Crear los elementos HTML

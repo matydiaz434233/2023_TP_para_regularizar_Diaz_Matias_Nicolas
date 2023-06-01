@@ -1,0 +1,62 @@
+/* estilos.css */
+
+/* Estilos generales */
+body {
+    background-color: #f2f2f2;
+}
+
+.container {
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+h1 {
+    color: #333;
+}
+
+h2 {
+    color: #555;
+}
+
+/* Estilos para botones */
+.btn-primary {
+    background-color: #007bff;
+    border-color: #007bff;
+}
+
+.btn-primary:hover {
+    background-color: #0069d9;
+    border-color: #0062cc;
+}
+
+.btn-primary:focus,
+.btn-primary.focus {
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.5);
+}
+
+.btn-generar-crud {
+    background-color: #dc3545;
+    border-color: #dc3545;
+    color: #fff;
+    font-size: 24px;
+    padding: 16px 32px;
+}
+
+/* Estilos para inputs */
+.form-control {
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 8px 12px;
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+.form-control:focus {
+    border-color: #80bdff;
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+}
+
+/* Fondo de página */
+body {
+    background-color: #c8c1c1;
+}
