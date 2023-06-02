@@ -14,6 +14,8 @@ myapp.use(express.static(path.join(__dirname, "vistas")));
 myapp.use(express.static(path.join(__dirname, "public")));
 
 myapp.set("view engine", "pug");
+// Middleware para analizar el cuerpo de la solicitud en formato JSON
+myapp.use(express.json());
 myapp.use(rutas);
 
 //conecto mi base de datos

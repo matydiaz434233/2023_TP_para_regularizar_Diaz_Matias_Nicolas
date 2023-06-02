@@ -1,10 +1,8 @@
-console.log("scrip cargado");
+console.log("script cargado");
+
 // Obtener el contenedor de atributos y el botón "OTRO"
 var atributosContainer = document.getElementById("atributos-container");
 var agregarAtributoBtn = document.getElementById("agregar-atributo");
-
-
-
 
 // Manejador de eventos para agregar otro conjunto de campos
 agregarAtributoBtn.addEventListener("click", function () {
@@ -46,13 +44,14 @@ agregarAtributoBtn.addEventListener("click", function () {
 
   row.appendChild(col1);
   row.appendChild(col2);
-  // BOTTON ELIMINAR ATRIBUTO SI SE DESEA
+
+  // BOTÓN ELIMINAR ATRIBUTO SI SE DESEA
   var eliminarAtributoBtn = document.createElement("button");
   eliminarAtributoBtn.className = "btn btn-danger btn-sm";
   eliminarAtributoBtn.innerHTML = "Eliminar";
   eliminarAtributoBtn.addEventListener("click", function () {
     // Eliminar el conjunto de campos de atributo
-    atributosContainer.removeChild(row);
+    row.parentNode.removeChild(row);
   });
 
   col1.appendChild(eliminarAtributoBtn);
@@ -70,9 +69,9 @@ document.getElementById("otroPermiso").addEventListener("click", function () {
   var select = nuevoPermiso.querySelector("select");
   select.selectedIndex = 0;
   var checkboxes = nuevoPermiso.querySelectorAll('input[type="checkbox"]');
-  for (var i = 0; i < checkboxes.length; i++) {
-    checkboxes[i].checked = false;
-  }
+  checkboxes.forEach(function (checkbox) {
+    checkbox.checked = false;
+  });
 
   // Crear un contenedor para el permiso y el botón "Eliminar"
   var permisoRow = document.createElement("div");
@@ -110,32 +109,40 @@ formulario.addEventListener("submit", function (e) {
 
   const attributeNames = datosFormulario.getAll("attributeName");
   const attributeTypes = datosFormulario.getAll("attributeType");
-  for (const [index, attributeName] of attributeNames.entries()) {
-    const attributeType = attributeTypes[index];
+
+  for (let i = 0; i < attributeNames.length; i++) {
+    const attributeName = attributeNames[i];
+    const attributeType = attributeTypes[i];
 
     requestBody.attributes.push({
       name: attributeName,
       type: attributeType,
     });
   }
-  console.log(requestBody);
-  // ENVIO DATOS AL BACKEND
 
-  fetch("/generadorCrud", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(requestBody),
+  console.log(requestBody.tableName);
+  console.log(requestBody.attributes);
+
+  // ENVIO DATOS AL BACKEND
+// Enviar la solicitud al backend
+fetch("/generadorCrud", {
+  method: "POST",
+  headers: {
+    "Content-Type": "application/json",
+  },
+  body: JSON.stringify(requestBody),
+})
+  .then((response) => response.json())
+  .then((data) => {
+    // Manejar la respuesta del backend
+    console.log(data);
   })
-    .then((response) => response.json())
-    .then((data) => {
-      // Manejar la respuesta del backend
-      console.log(data);
-      console.log(requestBody);
-    })
-    .catch((error) => {
-      // Manejar el error
-      console.error("error al enviar la solicitud", error);
-    });
+  .catch((error) => {
+    // Manejar el error
+    console.error("error al enviar la solicitud", error);
+  });
+
+
+
+
 });

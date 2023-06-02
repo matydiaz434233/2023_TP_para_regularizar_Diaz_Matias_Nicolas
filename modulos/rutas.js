@@ -28,12 +28,13 @@ rutas.get("*", (req, res) => {
 
 //METODOS POST
 
-rutas.post("/login/registro.html", (req, res) => {
-  res.redirect("../vistas/generadorCrud.html");
-});
+// rutas.post("/login/registro.html", (req, res) => {
+//   res.redirect("../vistas/generadorCrud.html");
+// });
 
-rutas.post("/generadorCrud", handler.generateCrud);
-
+//rutas.post("/generadorCrud", handler.generateCrud);
+// Ruta /generarCRUD
+rutas.post('/generadorCrud', handler.generateCrud)
 export default rutas;
 
 //******************** */
