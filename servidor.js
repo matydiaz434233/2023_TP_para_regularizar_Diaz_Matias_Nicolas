@@ -32,5 +32,5 @@ myapp.use(rutas);
 // connectToDatabase();
 //arranco mi servidor
 myapp.listen(2023, () => {
-  console.log("Servidor corriendo en el puerto 2023");
+  console.log("Servidor corriendo en el puerto http://localhost:2023");
 });

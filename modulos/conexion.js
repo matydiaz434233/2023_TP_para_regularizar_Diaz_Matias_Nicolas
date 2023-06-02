@@ -17,8 +17,8 @@ async function testDeConexion() {
 }
 
 const crearTabla = async (nombreTabla, atributos) => {
-  console.log(nombreTabla,"en conexion");
-  console.log(atributos, "atributos en conexion");
+  //console.log(nombreTabla,"en conexion");
+  //console.log(atributos, "atributos en conexion");
     const columnas = {};
     for (let atributo of atributos) {
       columnas[atributo.name] = {
@@ -34,7 +34,7 @@ const crearTabla = async (nombreTabla, atributos) => {
 
     try {
       await TablaCompleta.sync();
-      console.log("Tabla creada");
+      console.log(`Tabla ${nombreTabla} creada`);
     } catch (error) {
       console.log(error);
     }
