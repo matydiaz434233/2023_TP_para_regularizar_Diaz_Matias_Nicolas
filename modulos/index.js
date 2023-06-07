@@ -48,10 +48,15 @@ agregarAtributoBtn.addEventListener("click", function () {
   // Manejador del evento "change" para el tipo de atributo
   tipoAtributoSelect.addEventListener("change", function () {
     if (tipoAtributoSelect.value === "enum") {
+      // const opcionesEnumInput = document.createElement("input");
+      // opcionesEnumInput.type = "text";
+      // opcionesEnumInput.name = "enumOptions";
+      // row.appendChild(opcionesEnumInput);
+  
       const agregarOpcBoton = document.createElement("button");
       agregarOpcBoton.type = "button";
-      agregarOpcBoton.name = "enumOptions";
-      agregarOpcBoton.classList ="rounded-button"; 
+      agregarOpcBoton.name = "enumOptionsButton";
+      agregarOpcBoton.classList.add("rounded-button");
       agregarOpcBoton.textContent = "Agregar Opción";
       agregarOpcBoton.addEventListener("click", function () {
         const opcionEnum = document.createElement("input");
@@ -61,19 +66,29 @@ agregarAtributoBtn.addEventListener("click", function () {
         row.appendChild(opcionEnum);
       });
       row.appendChild(agregarOpcBoton);
+  
+      agregarOpcBoton.addEventListener("click", function () {
+        const options = opcionesEnumInput.value.split(",");
+        requestBody.attributes.push({
+          name: nombreAtributoInput.value,
+          type: tipoAtributoSelect.value,
+          enumOptions: options,
+        });
+      });
     } else {
       // Limpiar los elementos relacionados con enumOptions
       const enumInputs = row.querySelectorAll('input[name="enumOption"]');
       enumInputs.forEach(function (input) {
         input.parentNode.removeChild(input);
       });
-
+  
       const opcionesEnumInput = row.querySelector('input[name="enumOptions"]');
       if (opcionesEnumInput) {
         opcionesEnumInput.parentNode.removeChild(opcionesEnumInput);
       }
     }
   });
+  
 
   // BOTÓN ELIMINAR ATRIBUTO SI SE DESEA
   var eliminarAtributoBtn = document.createElement("button");
