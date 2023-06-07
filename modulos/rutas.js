@@ -1,8 +1,7 @@
 import express from "express";
 import path from "path";
 import { fileURLToPath } from "url";
-import  handler  from "./handlerRequest.js";
-//import handler from './handlerRequest.js';
+import handler from "./handlerRequest.js";
 
 const rutas = express.Router();
 const __filename = fileURLToPath(import.meta.url);
@@ -27,14 +26,10 @@ rutas.get("*", (req, res) => {
 });
 
 //METODOS POST
+rutas.post("/generadorCrud", handler.generateCrud);
 
-// rutas.post("/login/registro.html", (req, res) => {
-//   res.redirect("../vistas/generadorCrud.html");
-// });
+rutas.post("/registro", handler.registrarUsuario);
 
-//rutas.post("/generadorCrud", handler.generateCrud);
-// Ruta /generarCRUD
-rutas.post('/generadorCrud', handler.generateCrud)
 export default rutas;
 
 //******************** */

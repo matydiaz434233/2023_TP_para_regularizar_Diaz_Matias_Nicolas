@@ -2,6 +2,7 @@
 import path from "path";
 import { fileURLToPath } from "url";
 import { crearTabla } from "./conexion.js";
+import { crearUsuario } from "./conexion.js";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 //const myapp = express();
@@ -17,4 +18,13 @@ handler.generateCrud = (req, res) => {
   console.log(atributos);
   crearTabla(nombreTabla, atributos);
 };
+
+handler.registrarUsuario = (req, res) => {
+  const usuario = req.body.username;
+  const contraseña = req.body.password;
+  console.log(usuario);
+  console.log(contraseña);
+  crearUsuario(usuario, contraseña);
+};
+
 export default handler;

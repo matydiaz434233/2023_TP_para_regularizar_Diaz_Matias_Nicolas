@@ -18,19 +18,6 @@ myapp.set("view engine", "pug");
 myapp.use(express.json());
 myapp.use(rutas);
 
-//conecto mi base de datos
-// const connectToDatabase = async () => {
-//   try {
-//     await sequelize.authenticate();
-//     console.log('Conexión exitosa a la base de datos de generadorcrud');
-//   } catch (error) {
-//     console.log('Error en la conexión:', error);
-//   }
-// };
-
-// // Llamar a la función para conectar a la base de datos
-// connectToDatabase();
-//arranco mi servidor
 myapp.listen(2023, () => {
   console.log("Servidor corriendo en el puerto http://localhost:2023");
 });

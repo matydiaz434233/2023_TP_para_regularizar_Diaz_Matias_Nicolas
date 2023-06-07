@@ -29,6 +29,22 @@ h2 {
   border-color: #007bff;
 }
 
+.rounded-button {
+  display: inline-block;
+  border: 2px solid #000;
+  border-radius: 50px;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.rounded-button:hover {
+  background-color: #000;
+  color: #fff;
+}
+
 .btn-primary:hover {
   background-color: #0069d9;
   border-color: #0062cc;

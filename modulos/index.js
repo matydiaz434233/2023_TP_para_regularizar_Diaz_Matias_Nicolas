@@ -22,8 +22,8 @@ agregarAtributoBtn.addEventListener("click", function () {
   var opciones = [
     { valor: "", texto: "Elija un tipo", disabled: true },
     { valor: "int", texto: "Entero" },
-    { valor: "varchar(50)", texto: "Varchar (50)" },
-    { valor: "tinyint(1)", texto: "Bool" },
+    { valor: "varchar(50)", texto: "Texto" },
+    { valor: "tinyint(1)", texto: "Booleano" },
     { valor: "enum", texto: "Enum" },
   ];
   opciones.forEach(function (opcion) {
@@ -44,6 +44,36 @@ agregarAtributoBtn.addEventListener("click", function () {
 
   row.appendChild(col1);
   row.appendChild(col2);
+
+  // Manejador del evento "change" para el tipo de atributo
+  tipoAtributoSelect.addEventListener("change", function () {
+    if (tipoAtributoSelect.value === "enum") {
+      const agregarOpcBoton = document.createElement("button");
+      agregarOpcBoton.type = "button";
+      agregarOpcBoton.name = "enumOptions";
+      agregarOpcBoton.classList ="rounded-button"; 
+      agregarOpcBoton.textContent = "Agregar Opción";
+      agregarOpcBoton.addEventListener("click", function () {
+        const opcionEnum = document.createElement("input");
+        opcionEnum.type = "text";
+        opcionEnum.name = "enumOption";
+        opcionEnum.className = "form-control";
+        row.appendChild(opcionEnum);
+      });
+      row.appendChild(agregarOpcBoton);
+    } else {
+      // Limpiar los elementos relacionados con enumOptions
+      const enumInputs = row.querySelectorAll('input[name="enumOption"]');
+      enumInputs.forEach(function (input) {
+        input.parentNode.removeChild(input);
+      });
+
+      const opcionesEnumInput = row.querySelector('input[name="enumOptions"]');
+      if (opcionesEnumInput) {
+        opcionesEnumInput.parentNode.removeChild(opcionesEnumInput);
+      }
+    }
+  });
 
   // BOTÓN ELIMINAR ATRIBUTO SI SE DESEA
   var eliminarAtributoBtn = document.createElement("button");
@@ -114,35 +144,38 @@ formulario.addEventListener("submit", function (e) {
     const attributeName = attributeNames[i];
     const attributeType = attributeTypes[i];
 
-    requestBody.attributes.push({
+    let attributeData = {
       name: attributeName,
       type: attributeType,
-    });
+    };
+
+    if (attributeType === "enum") {
+      const enumOptions = datosFormulario.getAll("enumOption");
+      attributeData.enumOptions = enumOptions;
+    }
+
+    requestBody.attributes.push(attributeData);
   }
 
   console.log(requestBody.tableName);
   console.log(requestBody.attributes);
 
   // ENVIO DATOS AL BACKEND
-// Enviar la solicitud al backend
-fetch("/generadorCrud", {
-  method: "POST",
-  headers: {
-    "Content-Type": "application/json",
-  },
-  body: JSON.stringify(requestBody),
-})
-  .then((response) => response.json())
-  .then((data) => {
-    // Manejar la respuesta del backend
-    console.log(data);
+  // Enviar la solicitud al backend
+  fetch("/generadorCrud", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(requestBody),
   })
-  .catch((error) => {
-    // Manejar el error
-    console.error("error al enviar la solicitud", error);
-  });
-
-
-
-
+    .then((response) => response.json())
+    .then((data) => {
+      // Manejar la respuesta del backend
+      console.log(data);
+    })
+    .catch((error) => {
+      // Manejar el error
+      console.error("error al enviar la solicitud", error);
+    });
 });
