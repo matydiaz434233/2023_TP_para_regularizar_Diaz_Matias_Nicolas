@@ -1,4 +1,4 @@
-console.log("registro.js   CARGADO");
+console.log("registro.js CARGADO");
 document
   .getElementById("registrationForm")
   .addEventListener("submit", function (event) {
@@ -13,27 +13,22 @@ document
       password: password,
     };
 
-    // Opciones para la solicitud Fetch
-    var options = {
+    console.log(data);//hasta aca funciona
+
+    fetch("/registro", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify(data),
-    };
-
-    // URL a la que se enviará la solicitud Fetch
-    var url = "/registro";
-
-    // Realizar la solicitud Fetch
-    fetch(url, options)
-      .then(function (response) {
-        return response.json();
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        // Manejar la respuesta del backend
+        console.log(data);
       })
-      .then(function (data) {
-        console.log(data); // Aquí puedes manejar la respuesta del servidor
-      })
-      .catch(function (error) {
-        console.log(error); // Aquí puedes manejar cualquier error ocurrido durante la solicitud
+      .catch((error) => {
+        // Manejar el error
+        console.error("error al enviar la solicitud", error);
       });
   });
